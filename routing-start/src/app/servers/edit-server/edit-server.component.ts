@@ -12,6 +12,7 @@ export class EditServerComponent implements OnInit {
   server: {id: number, name: string, status: string};
   serverName = '';
   serverStatus = '';
+  isEditable: boolean;
 
   constructor(
     private serversService: ServersService,
@@ -19,16 +20,17 @@ export class EditServerComponent implements OnInit {
 
   ngOnInit() {
 
-    var id = this.route.snapshot.params['id'];
-    this.getAndSetServer(1);
+    var id = +this.route.snapshot.params['id'];
+    this.isEditable = this.route.snapshot.queryParams['allowEdit'] == '1' ? true: false;
+    this.getAndSetServer(id);
     this.route.params.subscribe((param)=>{
-      id=param['id'];
-      this.getAndSetServer(1);
+      id= +param['id'];
+      this.getAndSetServer(id);
     });
-    console.log(this.route.snapshot.queryParams);
-    console.log(this.route.snapshot.fragment);
     this.route.fragment.subscribe();
-    this.route.queryParams.subscribe();
+    this.route.queryParams.subscribe((queryParams)=>{
+      this.isEditable = queryParams['allowEdit'] == '1' ? true: false;
+    });
 
     
   }
