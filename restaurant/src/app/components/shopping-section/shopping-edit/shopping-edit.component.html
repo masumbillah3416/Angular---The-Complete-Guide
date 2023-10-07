@@ -1,0 +1,26 @@
+<div class="row m-1">
+    <div class="col-12">
+        <form >
+            <div class="row">
+                <div class="col-5 form-group">
+                    <label for="name"> Name</label>
+                    <input type="text" id="name" class="form-control" #nameInput>
+                </div>
+                
+                <div class="col-2 form-group">
+                    <label for="amount"> Amount</label>
+                    <input type="number" id="amount" class="form-control" #amountInput>
+                </div>
+
+                <div class="col-12 p-3">
+                    <button class="btn btn-success m-1" type="button" (click)="addNewIngredient()"> Add</button>
+                    <button class="btn btn-danger m-1" type="button"> Delete</button>
+                    <button class="btn btn-primary m-1" type="button"> Clear</button>
+                </div>
+
+
+
+            </div>
+        </form>
+    </div>
+</div>
