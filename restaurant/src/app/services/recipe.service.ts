@@ -41,6 +41,9 @@ export class RecipeService{
     addRecipe(recipe: Recipe){
         this.recipes.push(recipe);
     }
+    getRecipeById(id:number): Recipe{
+        return this.recipes[id];
+    }
 
     addIngredientsToShoppingList(ingredients:Ingredient[]){
         this.shoppingService.addIngredients(ingredients);
