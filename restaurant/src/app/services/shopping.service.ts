@@ -11,8 +11,22 @@ export class ShoppingService{
       ];
 
       ingredientUpdated = new Subject();
+      startedEditing = new Subject<number>();
       getIngredients(){
         return this.ingredients.slice();
+      }
+
+      getIngredientById(index:number){
+        return this.ingredients[index];
+      }
+      upgradeIngredient(index:number, ingredient:Ingredient){
+        this.ingredients[index] = ingredient;
+        this.ingredientUpdated.next(null);
+      }
+
+      deleteIngredient(index:number){
+        this.ingredients.splice(index,1);
+        this.ingredientUpdated.next(null);
       }
 
       addIngredient(ingredient: Ingredient){

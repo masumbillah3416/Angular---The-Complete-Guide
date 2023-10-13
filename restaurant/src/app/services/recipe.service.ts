@@ -2,9 +2,11 @@ import { Injectable } from "@angular/core";
 import { Recipe } from "../models/recipe.model";
 import { Ingredient } from "../models/ingredient.model";
 import { ShoppingService } from "./shopping.service";
+import { Subject } from "rxjs";
 
 @Injectable()
 export class RecipeService{
+    recipeChanged = new Subject<Recipe[]>();
     private recipes : Recipe[] = [
         new Recipe(
             'ABC',
@@ -32,19 +34,31 @@ export class RecipeService{
         
     }
 
+    addRecipe(recipe:Recipe){
+        this.recipes.push(recipe)
+        this.recipeChanged.next(this.recipes.slice())
+    }
+
+    updateRecipe(index:number,recipe:Recipe){
+        this.recipes[index] = recipe;
+        this.recipeChanged.next(this.recipes.slice())
+
+    }
 
     getRecipes(){
        return  this.recipes.slice();
     }
 
-    addRecipe(recipe: Recipe){
-        this.recipes.push(recipe);
-    }
     getRecipeById(id:number): Recipe{
         return this.recipes[id];
     }
 
     addIngredientsToShoppingList(ingredients:Ingredient[]){
         this.shoppingService.addIngredients(ingredients);
+    }
+
+    deleteRecipe(index:number){
+        this.recipes.splice(index,1);
+        this.recipeChanged.next(this.recipes.slice())
     }
 }

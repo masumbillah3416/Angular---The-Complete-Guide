@@ -12,7 +12,7 @@
             <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1" >
                 <li> <a  class="dropdown-item" (click)="addToShoppingList()">To Shopping List</a></li>
                 <li> <a  class="dropdown-item" routerLink="edit" >Edit Recipe</a></li>
-                <li> <a  class="dropdown-item" >Delete Recipe</a></li>
+                <li> <a  class="dropdown-item" (click)="recipeDelete()" style="cursor: pointer;" >Delete Recipe</a></li>
             </ul>
         </div>
     </div>
