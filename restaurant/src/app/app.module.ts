@@ -18,6 +18,8 @@ import { AppRouteModule } from './routes/routes.module';
 import { RecipeStartComponent } from './components/recipe-section/recipe/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './components/recipe-section/recipe/recipe-edit/recipe-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DataStorageService } from './services/data-storage.service';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -39,11 +41,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRouteModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     ShoppingService,
-    RecipeService
+    RecipeService,
+    DataStorageService
   ],
   bootstrap: [AppComponent]
 })

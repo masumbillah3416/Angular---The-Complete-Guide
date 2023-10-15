@@ -7,24 +7,25 @@ import { Subject } from "rxjs";
 @Injectable()
 export class RecipeService{
     recipeChanged = new Subject<Recipe[]>();
-    private recipes : Recipe[] = [
-        new Recipe(
-            'ABC',
-            'DEF',
-            'https://hips.hearstapps.com/hmg-prod/images/delish-202002-pozole-0392-landscape-pf-1582315071.jpg?crop=1xw:0.8441943127962085xh;center,top&resize=1200:*',
-            [
-                new Ingredient('Meat', 1),
-                new Ingredient('French Fries', 1)
-            ]), 
-        new Recipe(
-            'XYZ',
-            'MNO',
-            'https://hips.hearstapps.com/hmg-prod/images/delish-202002-pozole-0392-landscape-pf-1582315071.jpg?crop=1xw:0.8441943127962085xh;center,top&resize=1200:*',
-            [
-                new Ingredient('Buns', 2),
-                new Ingredient('Chicken', 1)
-            ])
-      ];
+    // private recipes : Recipe[] = [
+    //     new Recipe(
+    //         'ABC',
+    //         'DEF',
+    //         'https://hips.hearstapps.com/hmg-prod/images/delish-202002-pozole-0392-landscape-pf-1582315071.jpg?crop=1xw:0.8441943127962085xh;center,top&resize=1200:*',
+    //         [
+    //             new Ingredient('Meat', 1),
+    //             new Ingredient('French Fries', 1)
+    //         ]), 
+    //     new Recipe(
+    //         'XYZ',
+    //         'MNO',
+    //         'https://hips.hearstapps.com/hmg-prod/images/delish-202002-pozole-0392-landscape-pf-1582315071.jpg?crop=1xw:0.8441943127962085xh;center,top&resize=1200:*',
+    //         [
+    //             new Ingredient('Buns', 2),
+    //             new Ingredient('Chicken', 1)
+    //         ])
+    //   ];
+    private recipes : Recipe[] = [];
 
 
     /**
@@ -33,6 +34,13 @@ export class RecipeService{
     constructor(private shoppingService: ShoppingService) {
         
     }
+
+    setRecipes(recipes: Recipe[]){
+        this.recipes = recipes;
+        this.recipeChanged.next(this.recipes.slice())
+    }
+
+
 
     addRecipe(recipe:Recipe){
         this.recipes.push(recipe)
