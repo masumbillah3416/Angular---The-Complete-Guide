@@ -28,9 +28,6 @@ export class RecipeService{
     private recipes : Recipe[] = [];
 
 
-    /**
-     *
-     */
     constructor(private shoppingService: ShoppingService) {
         
     }

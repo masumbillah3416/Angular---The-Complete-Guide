@@ -1,13 +1,14 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { RecipeService } from "./recipe.service";
 import { Recipe } from "../models/recipe.model";
-import { map } from "rxjs";
+import { exhaustMap, map, take } from "rxjs";
+import { AuthService } from "../components/auth/auth.service";
 
 @Injectable()
 export class DataStorageService{
     baseUrl = 'https://restaurant-aed5a-default-rtdb.asia-southeast1.firebasedatabase.app/';
-    constructor(private http: HttpClient, private recipeService: RecipeService) {}
+    constructor(private http: HttpClient, private recipeService: RecipeService, private authService:AuthService) {}
 
     storeRecipe(){
         const recipes = this.recipeService.getRecipes();
